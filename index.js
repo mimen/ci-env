@@ -67,6 +67,16 @@ if (process.env.TRAVIS) {
   pull_request_number = ''
 
   ci = 'codeship'
+} else if (process.env.CI_NAME === 'heroku') {
+  repo = process.env.CI_REPO_OWNER + '/' + process.env.CI_REPO_NAME
+
+  sha = process.env.HEROKU_TEST_RUN_COMMIT_VERSION
+  event = process.env.CI_EVENT || 'push'
+  commit_message = 'asdf'
+  pull_request_number = 42069
+  branch = process.env.HEROKU_TEST_RUN_BRANCH
+  ci = 'custom'
+
 } else if (process.env.CI) {
   // Generic variables for docker images, custom CI builds, etc.
 
