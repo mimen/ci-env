@@ -70,6 +70,12 @@ if (process.env.TRAVIS) {
 } else if (process.env.CI_NAME === 'heroku') {
   repo = process.env.CI_REPO_OWNER + '/' + process.env.CI_REPO_NAME
 
+  console.log(process.env);
+  console.log(process.env.HEROKU_TEST_RUN_COMMIT_VERSION);
+  console.log(process.env.CI_NAME);
+  console.log(repo);
+  console.log(process.env.HEROKU_TEST_RUN_BRANCH);
+  
   sha = process.env.HEROKU_TEST_RUN_COMMIT_VERSION
   event = process.env.CI_EVENT || 'push'
   commit_message = 'asdf'
