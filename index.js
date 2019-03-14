@@ -1,8 +1,11 @@
 let drone = require('./utils/drone')
 let repo, sha, event, commit_message, pull_request_number, branch, ci, jobUrl, buildUrl
 
+console.log('suh dude');
+
 if (process.env.TRAVIS) {
   // Reference: https://docs.travis-ci.com/user/environment-variables
+  console.log('suh travis');
 
   repo = process.env.TRAVIS_REPO_SLUG
   sha = process.env.TRAVIS_PULL_REQUEST_SHA || process.env.TRAVIS_COMMIT
@@ -19,6 +22,8 @@ if (process.env.TRAVIS) {
 
   ci = 'travis'
 } else if (process.env.CIRCLECI) {
+  console.log('suh circle');
+
   // Reference: https://circleci.com/docs/1.0/environment-variables
 
   repo = process.env.CIRCLE_PROJECT_USERNAME + '/' + process.env.CIRCLE_PROJECT_REPONAME
@@ -75,13 +80,13 @@ if (process.env.TRAVIS) {
   console.log(process.env.CI_NAME);
   console.log(repo);
   console.log(process.env.HEROKU_TEST_RUN_BRANCH);
-  
+
   sha = process.env.HEROKU_TEST_RUN_COMMIT_VERSION
   event = process.env.CI_EVENT || 'push'
   commit_message = 'asdf'
   pull_request_number = 42069
   branch = process.env.HEROKU_TEST_RUN_BRANCH
-  ci = 'custom'
+  ci = 'heroku'
 
 } else if (process.env.CI) {
   // Generic variables for docker images, custom CI builds, etc.
